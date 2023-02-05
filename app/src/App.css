@@ -3,7 +3,8 @@
 }
 
 body {
-    margin: 0;
+    padding-top: 4rem;
+    margin: 0px;
     color: #333;
     --type-first: Helvetica, Arial, sans-serif;
     --type-second: "Spectral", Georgia;
@@ -15,14 +16,14 @@ h2,
 h3,
 h4,
 p {
-    margin: 0;
+    margin: 0px;
 }
 
 ul,
 li {
     list-style: none;
-    padding: 0;
-    margin: 0;
+    padding: 0px;
+    margin: 0px;
 }
 
 img {
@@ -36,6 +37,10 @@ input {
     font-size: 1rem;
     font-family: var(--type-first);
     color: #333;
+}
+
+a {
+    text-decoration: none;
 }
 
 .container {
