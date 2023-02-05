@@ -2,8 +2,11 @@ import React from "react";
 import styles from "./Header.module.css";
 import { Link } from "react-router-dom";
 import { ReactComponent as Dogs } from "../../Assets/dogs.svg";
+import { UserContext } from "../../Contexts/UserStorage";
 
 const Header = () => {
+    const { userFetch } = React.useContext(UserContext);
+
     return (
         <header className={styles.header}>
             <nav className={`${styles.nav} container`}>
@@ -14,9 +17,15 @@ const Header = () => {
                 >
                     <Dogs />
                 </Link>
-                <Link className={styles.login} to={"/login"}>
-                    Login / Criar
-                </Link>
+                {userFetch.user ? (
+                    <Link className={styles.login} to={"/conta"}>
+                        {userFetch.user.username}
+                    </Link>
+                ) : (
+                    <Link className={styles.login} to={"/login"}>
+                        Login / Criar
+                    </Link>
+                )}
             </nav>
         </header>
     );
