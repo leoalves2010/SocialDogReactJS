@@ -6,7 +6,7 @@ import useForm from "../../Hooks/useForm";
 import { UserContext } from "../../Contexts/UserStorage";
 
 const LoginForm = () => {
-    const { userLogin } = React.useContext(UserContext);
+    const { userData, userLogin } = React.useContext(UserContext);
 
     const username = useForm();
     const password = useForm();
@@ -35,7 +35,13 @@ const LoginForm = () => {
                     name="password"
                     {...password}
                 />
-                <Button>Entrar</Button>
+                {userData.loading ? (
+                    <Button disabled>Carregando...</Button>
+                ) : (
+                    <Button>Entrar</Button>
+                )}
+
+                {userData.error && <p>{userData.error}</p>}
             </form>
             <Link to="/login/criar">Cadastro</Link>
         </section>

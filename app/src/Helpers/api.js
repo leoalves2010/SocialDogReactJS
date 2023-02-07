@@ -13,6 +13,17 @@ export const api = {
             },
         };
     },
+    tokenValidatePost: (token) => {
+        return {
+            url: API_URL + "/jwt-auth/v1/token/validate",
+            options: {
+                method: "POST",
+                headers: {
+                    Authorization: "Bearer " + token,
+                },
+            },
+        };
+    },
     userGet: (token) => {
         return {
             url: API_URL + "/api/user",
