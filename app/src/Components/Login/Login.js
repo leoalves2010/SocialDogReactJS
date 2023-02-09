@@ -8,9 +8,9 @@ import { UserContext } from "../../Contexts/UserStorage";
 import styles from "./Login.module.css";
 
 const Login = () => {
-    const { userData } = React.useContext(UserContext);
+    const { data } = React.useContext(UserContext);
 
-    userData.isLogged && <Navigate to="/login" />;
+    data && <Navigate to="/login" />;
 
     return (
         <section className={styles.login}>

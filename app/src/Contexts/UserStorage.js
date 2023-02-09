@@ -1,29 +1,23 @@
 import React from "react";
-import { api } from "../Helpers/api";
+import { Api } from "../Helpers/Api";
 import { useNavigate } from "react-router-dom";
 
 export const UserContext = React.createContext("");
 
 export const UserStorage = ({ children }) => {
     const navigate = useNavigate();
-    const [userData, setUserData] = React.useState({
-        loading: false,
-        user: null,
-        error: null,
-        isLogged: false,
-    });
+    const [data, setData] = React.useState(null);
+    const [login, setLogin] = React.useState(null);
+    const [loading, setLoading] = React.useState(false);
+    const [error, setError] = React.useState(null);
 
     const getUser = React.useCallback(
         async (token) => {
-            const { url, options } = api.userGet(token);
+            const { url, options } = Api.userGet(token);
             const response = await fetch(url, options);
             const user = await response.json();
-            setUserData({
-                loading: false,
-                user: user,
-                error: null,
-                isLogged: true,
-            });
+            setData(user);
+            setLogin(true);
             navigate("/conta");
         },
         [navigate]
@@ -31,35 +25,27 @@ export const UserStorage = ({ children }) => {
 
     const userLogin = async (username, password) => {
         try {
-            setUserData({
-                loading: true,
-                user: null,
-                error: null,
-                isLogged: false,
-            });
-            const { url, options } = api.tokenPost({ username, password });
+            setError(null);
+            setLoading(true);
+            const { url, options } = Api.tokenPost({ username, password });
             const tokenRes = await fetch(url, options);
             if (!tokenRes.ok) throw new Error("Erro: Usuário inválido.");
             const { token } = await tokenRes.json();
             window.localStorage.setItem("token", token);
             await getUser(token);
         } catch (error) {
-            setUserData({
-                loading: false,
-                user: null,
-                error: error.message,
-                isLogged: false,
-            });
+            setError(error.message);
+            setLogin(false);
+        } finally {
+            setLoading(false);
         }
     };
 
     const userLogout = React.useCallback(() => {
-        setUserData({
-            loading: false,
-            user: null,
-            error: null,
-            isLogged: false,
-        });
+        setData(null);
+        setError(null);
+        setLoading(false);
+        setLogin(false);
         window.localStorage.removeItem("token");
         navigate("/login");
     }, [navigate]);
@@ -69,32 +55,28 @@ export const UserStorage = ({ children }) => {
             const token = window.localStorage.getItem("token");
             if (token) {
                 try {
-                    setUserData({
-                        loading: true,
-                        user: null,
-                        error: null,
-                        isLogged: false,
-                    });
-                    const { url, options } = api.tokenValidatePost(token);
+                    setError(null);
+                    setLoading(true);
+                    const { url, options } = Api.tokenValidatePost(token);
                     const response = await fetch(url, options);
                     if (!response.ok) throw new Error("Token inválido");
                     await getUser(token);
                 } catch (error) {
-                    setUserData({
-                        loading: false,
-                        user: null,
-                        error: error.message,
-                        isLogged: false,
-                    });
                     userLogout();
+                } finally {
+                    setLoading(false);
                 }
+            } else {
+                setLogin(false);
             }
         };
         autoLogin();
     }, [userLogout, getUser]);
 
     return (
-        <UserContext.Provider value={{ userLogin, userData, userLogout }}>
+        <UserContext.Provider
+            value={{ userLogin, userLogout, data, error, loading, login }}
+        >
             {children}
         </UserContext.Provider>
     );

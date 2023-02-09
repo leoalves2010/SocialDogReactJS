@@ -9,7 +9,7 @@ import styles from "./LoginForm.module.css";
 import stylesBtn from "../InterfaceElements/Button/Button.module.css";
 
 const LoginForm = () => {
-    const { userData, userLogin } = React.useContext(UserContext);
+    const { loading, error, userLogin } = React.useContext(UserContext);
 
     const username = useForm();
     const password = useForm();
@@ -38,13 +38,13 @@ const LoginForm = () => {
                     name="password"
                     {...password}
                 />
-                {userData.loading ? (
+                {loading ? (
                     <Button disabled>Carregando...</Button>
                 ) : (
                     <Button>Entrar</Button>
                 )}
 
-                <Error error={userData.error} />
+                <Error error={error} />
             </form>
             <Link to="/login/perdeu" className={styles.forgotPassword}>
                 Perdeu a Senha?
