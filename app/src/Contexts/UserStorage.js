@@ -19,7 +19,7 @@ export const UserStorage = ({ children }) => {
             setData(user);
             setLogin(true);
         },
-        [navigate]
+        []
     );
 
     const userLogin = async (username, password) => {
