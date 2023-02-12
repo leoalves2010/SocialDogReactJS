@@ -11,16 +11,13 @@ export const UserStorage = ({ children }) => {
     const [loading, setLoading] = React.useState(false);
     const [error, setError] = React.useState(null);
 
-    const getUser = React.useCallback(
-        async (token) => {
-            const { url, options } = Api.userGet(token);
-            const response = await fetch(url, options);
-            const user = await response.json();
-            setData(user);
-            setLogin(true);
-        },
-        []
-    );
+    const getUser = React.useCallback(async (token) => {
+        const { url, options } = Api.userGet(token);
+        const response = await fetch(url, options);
+        const user = await response.json();
+        setData(user);
+        setLogin(true);
+    }, []);
 
     const userLogin = async (username, password) => {
         try {
