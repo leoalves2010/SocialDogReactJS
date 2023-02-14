@@ -6,7 +6,7 @@ import Loading from "../InterfaceElements/Loading/Loading";
 import { Api } from "../../Helpers/Api";
 import styles from "./FeedPhotos.module.css";
 
-const FeedPhotos = () => {
+const FeedPhotos = ({ setModalPhoto }) => {
     const { apiFetch, request } = useFetch();
 
     React.useEffect(() => {
@@ -29,7 +29,11 @@ const FeedPhotos = () => {
             {apiFetch.data && (
                 <ul className={`${styles.feed} animeLeft`}>
                     {apiFetch.data.map((photo) => (
-                        <FeedPhotosItem key={photo.id} photo={photo} />
+                        <FeedPhotosItem
+                            key={photo.id}
+                            photo={photo}
+                            setModalPhoto={setModalPhoto}
+                        />
                     ))}
                 </ul>
             )}

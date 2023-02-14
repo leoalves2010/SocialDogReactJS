@@ -70,4 +70,13 @@ export const Api = {
             },
         };
     },
+    photoGet: (id) => {
+        return {
+            url: API_URL + `/api/photo/${id}`,
+            options: {
+                method: "GET",
+                cache: "no-store",
+            },
+        };
+    },
 };
