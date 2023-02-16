@@ -4,12 +4,18 @@ import { UserContext } from "../../Contexts/UserStorage";
 import PhotoCommentsForm from "../PhotoCommentsForm/PhotoCommentsForm";
 
 const PhotoComments = ({ id, comments }) => {
+    const commentsSection = React.useRef(null);
     const [listComments, setListComments] = React.useState(() => comments);
     const { login } = React.useContext(UserContext);
 
+    React.useEffect(() => {
+        commentsSection.current.scrollTop =
+            commentsSection.current.scrollHeight;
+    }, [listComments]);
+
     return (
         <>
-            <ul className={styles.comment}>
+            <ul ref={commentsSection} className={styles.comments}>
                 {listComments.length > 0 &&
                     listComments.map((comment) => (
                         <li key={comment.comment_ID}>

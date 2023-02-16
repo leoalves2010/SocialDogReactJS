@@ -2,7 +2,7 @@
     margin: auto;
     height: 36rem;
     border-radius: 0.2rem;
-    background-color: #fff;
+    background: white;
     display: grid;
     grid-template-columns: 36rem 20rem;
     grid-template-rows: auto 1fr auto;
@@ -14,8 +14,8 @@
 
 @keyframes scaleUp {
     to {
-        transform: initial;
         opacity: initial;
+        transform: initial;
     }
 }
 
@@ -29,6 +29,18 @@
 
 .comments {
     padding: 0 2rem;
+}
+
+@media (max-width: 64rem) {
+    .photo {
+        height: auto;
+        max-height: calc(100vh - 4rem);
+        overflow-y: auto;
+        grid-template-columns: minmax(20rem, 40rem);
+    }
+    .img {
+        grid-row: 1;
+    }
 }
 
 .author {
@@ -46,10 +58,10 @@
 .visualizacoes::before {
     content: "";
     display: inline-block;
-    background: url("../../Assets/visualizacao-black.svg");
-    margin-right: 0.5rem;
-    height: 10px;
     width: 16px;
+    height: 10px;
+    margin-right: 0.5rem;
+    background: url("../../Assets/visualizacao-black.svg");
 }
 
 .attributes {
@@ -72,19 +84,6 @@
     position: relative;
     top: 3px;
     width: 2px;
-    background-color: #333;
+    background: #333;
     margin-top: 5px;
-}
-
-@media (max-width: 64rem) {
-    .photo {
-        height: auto;
-        max-height: calc(100vh - 4rem);
-        overflow-y: auto;
-        grid-template-columns: minmax(20rem, 40rem);
-    }
-
-    .img {
-        grid-row: 1;
-    }
 }

@@ -5,7 +5,6 @@ import PhotoComments from "../PhotoComments/PhotoComments.js";
 
 const PhotoContent = ({ data }) => {
     const { photo, comments } = data;
-
     return (
         <div className={styles.photo}>
             <div className={styles.img}>
@@ -28,9 +27,9 @@ const PhotoContent = ({ data }) => {
                         <li>{photo.peso} kg</li>
                         <li>{photo.idade} anos</li>
                     </ul>
-                    <PhotoComments id={photo.id} comments={comments} />
                 </div>
             </div>
+            <PhotoComments id={photo.id} comments={comments} />
         </div>
     );
 };
