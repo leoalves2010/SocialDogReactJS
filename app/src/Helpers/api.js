@@ -92,4 +92,15 @@ export const Api = {
             },
         };
     },
+    photoDelete: (id, token) => {
+        return {
+            url: API_URL + `/api/photo/${id}`,
+            options: {
+                method: "DELETE",
+                headers: {
+                    Authorization: "Bearer " + token,
+                },
+            },
+        };
+    },
 };
