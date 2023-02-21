@@ -7,6 +7,7 @@ import Login from "./Components/Login/Login";
 import User from "./Components/User/User";
 import Photo from "./Components/Photo/Photo";
 import ProtectedRoute from "./Helpers/ProtectedRoute";
+import UserProfile from "./Components/UserProfile/UserProfile";
 
 function App() {
     return (
@@ -24,6 +25,7 @@ function App() {
                     }
                 />
                 <Route path="foto/:id" element={<Photo />} />
+                <Route path="perfil/:user" element={<UserProfile />} />
             </Routes>
             <Footer />
         </div>

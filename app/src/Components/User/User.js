@@ -8,6 +8,7 @@ import { UserContext } from "../../Contexts/UserStorage";
 
 const User = () => {
     const { data } = React.useContext(UserContext);
+    console.log(data)
 
     return (
         <section className="container">
