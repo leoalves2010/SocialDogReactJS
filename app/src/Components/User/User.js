@@ -9,7 +9,6 @@ import NotFound from "../NotFound/NotFound";
 
 const User = () => {
     const { data } = React.useContext(UserContext);
-    console.log(data);
 
     return (
         <section className="container">
