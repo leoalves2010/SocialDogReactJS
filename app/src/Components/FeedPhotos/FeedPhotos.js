@@ -6,21 +6,21 @@ import Loading from "../InterfaceElements/Loading/Loading";
 import { Api } from "../../Helpers/Api";
 import styles from "./FeedPhotos.module.css";
 
-const FeedPhotos = ({ setModalPhoto }) => {
+const FeedPhotos = ({ setModalPhoto, user, page, setInfinite }) => {
     const { apiFetch, request } = useFetch();
 
     React.useEffect(() => {
         const fetchPhotos = async () => {
-            const { url, options } = Api.photosGet({
-                page: 1,
-                total: 6,
-                user: 0,
-            });
+            const total = 3;
+            const { url, options } = Api.photosGet({ page, total, user });
             const { response, json } = await request(url, options);
+            if (response && response.ok && json.length < total) {
+                setInfinite(false);
+            }
         };
 
         fetchPhotos();
-    }, [request]);
+    }, [page, request, setInfinite, user]);
 
     if (apiFetch.error) return <Error error={apiFetch.error} />;
     if (apiFetch.loading) return <Loading />;
