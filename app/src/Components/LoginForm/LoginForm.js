@@ -7,6 +7,7 @@ import { UserContext } from "../../Contexts/UserStorage";
 import Error from "../InterfaceElements/Error/Error";
 import styles from "./LoginForm.module.css";
 import stylesBtn from "../InterfaceElements/Button/Button.module.css";
+import Head from "../../Helpers/Head";
 
 const LoginForm = () => {
     const { loading, error, userLogin } = React.useContext(UserContext);
@@ -24,6 +25,10 @@ const LoginForm = () => {
 
     return (
         <section className="animeLeft">
+            <Head
+                title="Login"
+                description="Página para realizar o login no sistema."
+            />
             <h1 className="title">Login</h1>
             <form onSubmit={handleSubmit} className={styles.form}>
                 <Input

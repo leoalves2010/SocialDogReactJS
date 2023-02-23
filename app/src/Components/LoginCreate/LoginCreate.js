@@ -6,6 +6,7 @@ import useForm from "../../Hooks/useForm";
 import { Api } from "../../Helpers/Api";
 import { UserContext } from "../../Contexts/UserStorage";
 import useFetch from "../../Hooks/useFetch";
+import Head from "../../Helpers/Head";
 
 const LoginCreate = () => {
     const username = useForm();
@@ -28,6 +29,10 @@ const LoginCreate = () => {
 
     return (
         <section className="animeLeft">
+            <Head
+                title="Crie sua conta"
+                description="Página para criar uma conta de usuário."
+            />
             <h1 className="title">Cadastre-se</h1>
             <form onSubmit={handleSubmit}>
                 <Input

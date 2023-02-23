@@ -6,6 +6,7 @@ import Button from "../InterfaceElements/Button/Button";
 import Input from "../InterfaceElements/Input/Input";
 import { Api } from "../../Helpers/Api";
 import Error from "../InterfaceElements/Error/Error";
+import Head from "../../Helpers/Head";
 
 const LoginPasswordReset = () => {
     const [login, setLogin] = React.useState("");
@@ -35,6 +36,10 @@ const LoginPasswordReset = () => {
 
     return (
         <section>
+            <Head
+                title="Resete a senha"
+                description="Página para resetar a senha de usuário."
+            />
             <h1 className="title">Resete a senha</h1>
             <form onSubmit={handleSubmit}>
                 <Input

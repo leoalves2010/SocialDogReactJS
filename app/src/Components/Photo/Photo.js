@@ -5,6 +5,7 @@ import { Api } from "../../Helpers/Api";
 import Error from "../InterfaceElements/Error/Error";
 import Loading from "../InterfaceElements/Loading/Loading";
 import PhotoContent from "../PhotoContent/PhotoContent";
+import Head from "../../Helpers/Head";
 
 const Photo = () => {
     const { id } = useParams();
@@ -20,6 +21,10 @@ const Photo = () => {
     if (apiFetch.data)
         return (
             <section className="container mainContainer">
+                <Head
+                    title={apiFetch.data.photo.title}
+                    description={`Página com a foto ${apiFetch.data.photo.title}`}
+                />
                 <PhotoContent data={apiFetch.data} single={true} />
             </section>
         );
