@@ -7,7 +7,7 @@ export const UserContext = React.createContext("");
 export const UserStorage = ({ children }) => {
     const navigate = useNavigate();
     const [data, setData] = React.useState(null);
-    const [login, setLogin] = React.useState(null);
+    const [login, setLogin] = React.useState(false);
     const [loading, setLoading] = React.useState(false);
     const [error, setError] = React.useState(null);
 
@@ -38,7 +38,7 @@ export const UserStorage = ({ children }) => {
         }
     };
 
-    const userLogout = React.useCallback(() => {
+    const userLogout = React.useCallback(async () => {
         setData(null);
         setError(null);
         setLoading(false);

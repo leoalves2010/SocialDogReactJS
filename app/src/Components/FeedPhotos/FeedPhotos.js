@@ -37,6 +37,11 @@ const FeedPhotos = ({ setModalPhoto, user, page, setInfinite }) => {
                     ))}
                 </ul>
             )}
+            {apiFetch.data?.length === 0 && (
+                <div className="animeLeft">
+                    Não há fotos cadastradas no momento.
+                </div>
+            )}
         </div>
     );
 };

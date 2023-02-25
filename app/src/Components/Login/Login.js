@@ -9,9 +9,9 @@ import styles from "./Login.module.css";
 import NotFound from "../NotFound/NotFound";
 
 const Login = () => {
-    const { data } = React.useContext(UserContext);
+    const { login } = React.useContext(UserContext);
 
-    data && <Navigate to="/login" />;
+    if (login) return <Navigate to="/conta" />;
 
     return (
         <section className={styles.login}>
