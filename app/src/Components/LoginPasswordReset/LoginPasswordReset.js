@@ -11,7 +11,7 @@ import Head from "../../Helpers/Head";
 const LoginPasswordReset = () => {
     const [login, setLogin] = React.useState("");
     const [key, setKey] = React.useState("");
-    let [searchParams, setSearchParams] = useSearchParams();
+    let [searchParams] = useSearchParams();
     const password = useForm();
     const { apiFetch, request } = useFetch();
     const navigate = useNavigate();
